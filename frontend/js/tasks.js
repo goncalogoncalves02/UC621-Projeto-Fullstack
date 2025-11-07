@@ -189,7 +189,7 @@ async function updateTask(id) {
         Authorization: `Bearer ${token}`,
       },
       //       - Include the updated task data in the request body as JSON.
-      body: JSON.stringify(updateTask),
+      body: JSON.stringify(updatedTask),
     });
 
     // TODO: Check if the response is successful.

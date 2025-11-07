@@ -80,8 +80,7 @@ router.post("/", authenticateToken, (req, res) => {
   const { title, description, status, date } = req.body;
   const userId = req.user.userId; // Get the user ID from the token
 
-  const sql =
-    "INSERT INTO tasks (title, description, status, date, user_id) VALUES (?, ?, ?, ?, ?)";
+  const sql = "INSERT INTO tasks (title, description, status, date, user_id) VALUES (?, ?, ?, ?, ?)";
   db.run(sql, [title, description, status, date, userId], function (err) {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -138,7 +137,7 @@ router.delete("/:id", authenticateToken, (req, res) => {
   //       - Use db.run() with parameters [id, userId].
   const sql = "DELETE FROM tasks WHERE id = ? AND user_id = ?";
 
-  db.run(sql, { id, userId }, function (err) {
+  db.run(sql, [id, userId], function (err) {
     // TODO: If an error occurs during the query execution:
     if (err) {
       //       - Respond with HTTP 500 and include the error message in JSON format.
