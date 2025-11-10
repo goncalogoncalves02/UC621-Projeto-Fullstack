@@ -29,6 +29,14 @@ function displayTasks(tasks) {
   const pendingTaskList = document.getElementById("pending-task-list");
   const completedTaskList = document.getElementById("completed-task-list");
 
+  // Calculate and count tasks by status
+  const pendingCount = tasks.filter(task => task.status === 'pending').length;
+  const completedCount = tasks.filter(task => task.status === 'completed').length;
+
+  // Finds elements <span> inside index.html to update the counts
+  document.getElementById("pending-count").textContent = pendingCount;
+  document.getElementById("completed-count").textContent = completedCount;
+
   pendingTaskList.innerHTML = ""; // Clear previous pending tasks
   completedTaskList.innerHTML = ""; // Clear previous completed tasks
 
@@ -68,6 +76,8 @@ function displayTasks(tasks) {
       completedTaskList.appendChild(taskItem);
     }
   });
+
+  
 }
 
 function openEditModal(id, title, description, status, date) {
